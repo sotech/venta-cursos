@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Facebook, Instagram, Linkedin, Twitter, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef } from 'react'
 import CountUp from 'react-countup'
+import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Bienvenida from "./sections/bienvenida"
 import CursosRecomendados from "./sections/cursosRecomendados"
 import Testimonios from "./sections/testimonios"
+import Estadisticas from "./sections/estadisticas"
 
 export default function HomePage() {
 
@@ -42,25 +44,43 @@ export default function HomePage() {
       <main className="flex-1">
         <Bienvenida />
         <CursosRecomendados />
-        <section ref={statsRef} className="w-full py-12 md:py-24 bg-[#FFA726]">
+        <Estadisticas />
+        <section className="w-full py-12 md:py-24 bg-gray-100">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
-                <CountUp end={100} duration={2} enableScrollSpy className="text-4xl font-bold mb-2 text-[#FFA726]" />
-                <p className="text-xl text-gray-600">Cursos disponibles</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
-                <CountUp end={3500} duration={2} enableScrollSpy className="text-4xl font-bold mb-2 text-[#FFA726]" />
-                <p className="text-xl text-gray-600">Estudiantes activos</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
-                <CountUp end={20} duration={2} enableScrollSpy className="text-4xl font-bold mb-2 text-[#FFA726]" />
-                <p className="text-xl text-gray-600">Horas de estudio</p>
-              </div>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-[#FFA726]">
+              Que dicen nuestros alumnos...
+            </h2>
+            <div className="relative">
+              <Slider ref={sliderRef} {...sliderSettings}>
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="px-4">
+                    <div className="bg-white rounded-lg shadow-md p-8 flex flex-col items-center text-center">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-24 h-24 rounded-full mb-4"
+                      />
+                      <p className="text-gray-600 mb-4">{testimonial.text}</p>
+                      <h3 className="font-semibold text-lg text-[#FFA726]">{testimonial.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+              <button
+                onClick={goToPrev}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
+              >
+                <ChevronLeft className="w-6 h-6 text-[#FFA726]" />
+              </button>
+              <button
+                onClick={goToNext}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
+              >
+                <ChevronRight className="w-6 h-6 text-[#FFA726]" />
+              </button>
             </div>
           </div>
         </section>
-        <Testimonios />
       </main>
       <footer className="w-full border-t bg-[#FFA726] text-white">
         <div className="container mx-auto flex flex-col items-center justify-between space-y-4 py-10 md:h-24 md:flex-row md:py-0">
