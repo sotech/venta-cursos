@@ -1,5 +1,6 @@
 'use client'
 
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Facebook, Instagram, Linkedin, Twitter, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -27,7 +28,7 @@ export default function HomePage() {
             </Link>
             <nav className="flex items-center space-x-6 text-sm font-medium text-white">
               <Link href="/courses">Cursos</Link>
-              <Link href="/about">Acerca</Link>
+              <Link href="/about">Acerca de Nosotros</Link>
               <Link href="/contact">Contacto</Link>
             </nav>
           </div>
