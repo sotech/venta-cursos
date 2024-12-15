@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import MenuHamburguesa from '@/components/ui/menuHamburguesa'
 
 
 function Header() {
@@ -25,6 +26,7 @@ function Header() {
               <Button className="bg-[#FFB6C6] hover:bg-[#FFB6C6]/90 text-white">Registrarse</Button>
             </div>
           </div>
+          <MenuHamburguesa/>
         </div>
       </header>
     )
